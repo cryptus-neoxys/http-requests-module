@@ -1,0 +1,32 @@
+.Nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.Nav ul li {
+    font-size: 1.25rem;
+    font-weight: 400;
+    display: inline-block;
+    margin: 20px;
+}
+
+.Nav ul li a {
+    text-decoration: none;
+    color: black;
+    background: linear-gradient(180deg, #16EFB8, #66BF88) no-repeat bottom;
+    background-size: 95% 15%;
+    transition: all 0.2s ease-out;
+}
+
+.Nav ul li a:hover {
+    background-size: 95% 45%;
+    color: #fa923f;
+}
+
+.Nav ul li a:active,
+.Nav ul li a.active {
+    color: #fa923f;
+}
