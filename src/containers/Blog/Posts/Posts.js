@@ -16,12 +16,12 @@ class Posts extends Component {
             .then(response => {
                 const posts = response.data.slice(0, 4);
                 const updatedPosts = posts.map(post => {
-                    return{
+                    return {
                         ...post,
                         author: 'Dev'
                     }
                 });
-                this.setState({posts: updatedPosts})
+                this.setState({ posts: updatedPosts })
                 // console.log(response);
             })
             .catch(err => {
@@ -29,28 +29,28 @@ class Posts extends Component {
                 // this.setState({error: true});
             });
     }
-    
+
     postSelectedHandler = (id) => {
         this.props.history.push('/posts/' + id)
     }
 
-    
-    render () {
-        let posts = <p style={{textAlign: 'center'}}>Something went wrong!</p>;
-        if(!this.state.error) {
-            posts = <p style={{textAlign: 'center'}}>Loading {Object.keys(this.state)[0]}...</p>;
-            if(this.state.posts.length > 0) {
+
+    render() {
+        let posts = <p style={{ textAlign: 'center' }}>Something went wrong!</p>;
+        if (!this.state.error) {
+            posts = <p style={{ textAlign: 'center' }}>Loading {Object.keys(this.state)[0]}...</p>;
+            if (this.state.posts.length > 0) {
                 posts = this.state.posts.map(
                     post => {
                         return (
                             // <Link 
                             // to={'/posts' + post.id}
                             // key={post.id}>
-                                <Post
-                                    key={post.id}
-                                    title={post.title} 
-                                    author={post.author}
-                                    clicked={() => this.postSelectedHandler(post.id)} />
+                            <Post
+                                key={post.id}
+                                title={post.title}
+                                author={post.author}
+                                clicked={() => this.postSelectedHandler(post.id)} />
                             // </Link>
                         );
                     }
@@ -59,10 +59,10 @@ class Posts extends Component {
         }
         return (
             <div>
-            <section className="Posts">
-                {posts}
-            </section>
-            <Route path={this.props.match.url + '/:id'} exact component={FullPost} />
+                <section className="Posts">
+                    {posts}
+                </section>
+                <Route path={this.props.match.url + '/:id'} exact component={FullPost} />
             </div>
         );
     }

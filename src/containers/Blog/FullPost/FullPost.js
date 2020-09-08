@@ -12,20 +12,20 @@ class FullPost extends Component {
         console.log(this.props);
         this.loadData();
     }
-    
+
     componentDidUpdate() {
         this.loadData();
     }
-    loadData () {
-        if(this.props.match.params.id) {
-            if( !this.state.loadedPost || 
-                    (this.state.loadedPost && 
-                    this.state.loadedPost.id !== +this.props.match.params.id) 
-                ) {
+    loadData() {
+        if (this.props.match.params.id) {
+            if (!this.state.loadedPost ||
+                (this.state.loadedPost &&
+                    this.state.loadedPost.id !== +this.props.match.params.id)
+            ) {
                 axios.get(`/posts/${this.props.match.params.id}`)
                     .then(response => {
                         // console.log(response);
-                        this.setState({loadedPost: response.data})
+                        this.setState({ loadedPost: response.data })
                     });
             }
         }
@@ -37,12 +37,12 @@ class FullPost extends Component {
             });
     }
 
-    render () {
-        let post = <p style={{textAlign: 'center'}} >Loading...</p>;
-        if(this.props.match.params.id) {
-            post = <p style={{textAlign: 'center'}} >{`Loading...${this.props.match.params.id}`}</p>;
+    render() {
+        let post = <p style={{ textAlign: 'center' }} >Loading...</p>;
+        if (this.props.match.params.id) {
+            post = <p style={{ textAlign: 'center' }} >{`Loading...${this.props.match.params.id}`}</p>;
         }
-        if(this.state.loadedPost) {
+        if (this.state.loadedPost) {
             post = (
                 <div className="FullPost">
                     <h1>{this.state.loadedPost.title}</h1>
@@ -51,7 +51,7 @@ class FullPost extends Component {
                         <button onClick={this.deletePostHandler} className="Delete">Delete</button>
                     </div>
                 </div>
-    
+
             );
         }
         return post;
